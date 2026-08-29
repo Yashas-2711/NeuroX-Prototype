@@ -1,0 +1,15 @@
+import { ArrowLeft, ArrowRight, Building2, LoaderCircle } from 'lucide-react'
+import { useCallback, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import Navbar from '../components/Navbar'
+import { getUniversityMatches } from '../services/api'
+
+function Universities() {
+  const [challenge] = useState(() => JSON.parse(sessionStorage.getItem('neuroxChallenge') || 'null'))
+  const [matches, setMatches] = useState([]); const [loading, setLoading] = useState(Boolean(challenge)); const [error, setError] = useState('')
+  const load = useCallback(async () => { if (!challenge) return; setError(''); try { const data = await getUniversityMatches(challenge); setMatches(data.matches || []) } catch { setError('University matching is temporarily unavailable.') } finally { setLoading(false) } }, [challenge])
+  useEffect(() => { const timer = window.setTimeout(load, 0); return () => window.clearTimeout(timer) }, [load])
+  const retry = () => { setLoading(true); load() }
+  return <div className="app-shell form-shell"><Navbar /><main className="analysis-page container"><Link className="back-link" to="/solutions"><ArrowLeft size={16} />Back to Solutions</Link><div className="analysis-heading"><p className="eyebrow"><span />UNIVERSITY COLLABORATION</p><h1>Potential academic collaborators.</h1><p>Potential academic partners based on the challenge domain and required expertise.</p></div>{loading ? <section className="analysis-card loading-card"><LoaderCircle className="spinner" size={30} /><h2>NeuroX is matching demo institutions...</h2></section> : error ? <section className="analysis-card empty-analysis"><h2>{error}</h2><p>Please try again.</p><button className="button button-secondary" onClick={retry}>Retry</button></section> : !challenge ? <section className="analysis-card empty-analysis"><h2>No challenge found.</h2><Link className="button button-primary" to="/submit">Submit a Challenge</Link></section> : <><p className="demo-note">Demo University Data — these fictional institutions are not NeuroX partnerships.</p><div className="university-grid">{matches.map((item) => <article className="analysis-card university-card" key={item.id}><Building2 size={22} /><span className="demo-badge">DEMO DATA</span><h2>{item.name}</h2><strong className="match-score">{item.match_score}% Match</strong><p><b>Expertise:</b> {item.matching_expertise.join(' • ') || 'General fit'}</p><p><b>Relevant Departments:</b> {item.relevant_departments.join(' • ') || 'General fit'}</p><div className="match-breakdown"><span>Domain Match <b>{item.score_breakdown.domain_match}/50</b></span><span>Expertise Match <b>{item.score_breakdown.expertise_match}/30</b></span><span>Department Match <b>{item.score_breakdown.department_match}/20</b></span><strong>Overall Match {item.match_score}%</strong></div></article>)}</div><div className="analysis-actions"><Link className="button button-secondary" to="/solutions"><ArrowLeft size={16} />Back to Solutions</Link><Link className="button button-primary" to="/industry">Continue to Industry Collaboration <ArrowRight size={16} /></Link></div></>}</main></div>
+}
+export default Universities

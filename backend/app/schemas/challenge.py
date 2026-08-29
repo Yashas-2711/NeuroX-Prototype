@@ -14,3 +14,11 @@ class ChallengeAcknowledgement(BaseModel):
     message: str
     challenge: ChallengeSubmission
     ai_analysis: dict | None = None
+
+class SimilarityRequest(BaseModel):
+    title: str
+    description: str
+    domain: str
+
+class ImpactRequest(ChallengeSubmission):
+    pass

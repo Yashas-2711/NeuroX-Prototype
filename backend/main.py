@@ -1,7 +1,14 @@
+import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routes.health import router as health_router
 from app.routes.challenges import router as challenge_router
+from app.routes.similarity import router as similarity_router
+from app.routes.impact import router as impact_router
+from app.routes.solutions import router as solutions_router
+from app.routes.universities import router as universities_router
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 
 app = FastAPI(title="NeuroX Prototype API")
 
@@ -17,3 +24,7 @@ def root():
 
 app.include_router(health_router)
 app.include_router(challenge_router)
+app.include_router(similarity_router)
+app.include_router(impact_router)
+app.include_router(solutions_router)
+app.include_router(universities_router)
