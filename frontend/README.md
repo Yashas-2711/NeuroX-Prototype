@@ -1,4 +1,8 @@
+
+
 # React + Vite
+
+codex resume, then select Build frontend challenge hub (01a046a6-9131-78f2-8d82-44cd7394efdc)
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 

@@ -1,0 +1,34 @@
+{
+  "modelName": "NeuroX Classifier",
+  "modelType": "fine_tuned_text_classifier",
+  "modelVersion": "neurox-classifier-v2",
+  "baseModel": "prajjwal1/bert-tiny",
+  "datasetVersion": "v2",
+  "numTrainingExamples": 520,
+  "numValidationExamples": 65,
+  "numTestExamples": 65,
+  "numLabels": 13,
+  "trainedAt": "2026-08-26T17:21:38.737907+00:00",
+  "trainingDate": "2026-08-26",
+  "framework": "transformers",
+  "training": {
+    "epochs": 8,
+    "learningRate": 2e-05,
+    "batchSize": 8,
+    "maxLength": 128,
+    "device": "cpu",
+    "seed": 42
+  },
+  "metrics": {
+    "accuracy": 0.7076923076923077,
+    "macroPrecision": 0.6868131868131868,
+    "macroRecall": 0.7076923076923076,
+    "macroF1": 0.6666303781688397
+  },
+  "inferenceTime": {
+    "examples": 20,
+    "averageMs": 5.3,
+    "minimumMs": 1.514,
+    "maximumMs": 43.984
+  }
+}
