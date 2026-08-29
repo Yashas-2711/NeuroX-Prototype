@@ -7,6 +7,8 @@ from app.routes.similarity import router as similarity_router
 from app.routes.impact import router as impact_router
 from app.routes.solutions import router as solutions_router
 from app.routes.universities import router as universities_router
+from app.routes.industries import router as industries_router
+from app.routes.persistence import router as persistence_router
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 
@@ -28,3 +30,5 @@ app.include_router(similarity_router)
 app.include_router(impact_router)
 app.include_router(solutions_router)
 app.include_router(universities_router)
+app.include_router(industries_router)
+app.include_router(persistence_router)

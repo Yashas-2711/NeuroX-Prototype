@@ -4,3 +4,4 @@ pydantic
 torch==2.8.0
 transformers==4.57.6
 sentence-transformers
+pymongo

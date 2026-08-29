@@ -7,8 +7,10 @@ import Impact from './pages/Impact'
 import Solutions from './pages/Solutions'
 import Universities from './pages/Universities'
 import Industry from './pages/Industry'
+import Workspace from './pages/Workspace'
+import Demo from './pages/Demo'
 import './index.css'
 
-function App() { return <BrowserRouter><Routes><Route path="/" element={<Home />} /><Route path="/submit" element={<SubmitChallenge />} /><Route path="/analysis" element={<Analysis />} /><Route path="/similar" element={<Similar />} /><Route path="/impact" element={<Impact />} /><Route path="/solutions" element={<Solutions />} /><Route path="/universities" element={<Universities />} /><Route path="/industry" element={<Industry />} /></Routes></BrowserRouter> }
+function App() { return <BrowserRouter><Routes><Route path="/" element={<Home />} /><Route path="/submit" element={<SubmitChallenge />} /><Route path="/analysis" element={<Analysis />} /><Route path="/similar" element={<Similar />} /><Route path="/impact" element={<Impact />} /><Route path="/solutions" element={<Solutions />} /><Route path="/universities" element={<Universities />} /><Route path="/industry" element={<Industry />} /><Route path="/workspace" element={<Workspace />} /><Route path="/demo" element={<Demo />} /></Routes></BrowserRouter> }
 
 export default App
